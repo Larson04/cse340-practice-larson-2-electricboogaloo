@@ -16,7 +16,6 @@ const __dirname = dirname(__filename);
  */
 // Create an instance of an Express application
 const app = express();
-const name = process.env.NAME;
 
 /**
  * Configure Express middleware
