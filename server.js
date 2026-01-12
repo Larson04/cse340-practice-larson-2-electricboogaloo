@@ -26,11 +26,18 @@ const name = process.env.NAME;
 app.use(express.static(path.join(__dirname, 'public')));
 
 /**
- * Declare Routes
+ * Routes
  */
-// Define a route handler for the root URL ('/')
 app.get('/', (req, res) => {
-    res.send(`Hello, ${name}!`);
+    res.sendFile(path.join(__dirname, 'src/views/home.html'));
+});
+
+app.get('/about', (req, res) => {
+    res.sendFile(path.join(__dirname, 'src/views/about.html'));
+});
+
+app.get('/products', (req, res) => {
+    res.sendFile(path.join(__dirname, 'src/views/products.html'));
 });
 
 // Start the server and listen on the specified port
