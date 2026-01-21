@@ -5,6 +5,10 @@ html, body {
     padding: 20px;
 }
 
+.blue-theme { background-color: #e3f8fd; }
+.green-theme { background-color: #e8f5f0; }
+.red-theme { background-color: #ffebf5; }
+
 body {
     nav {
         ul {

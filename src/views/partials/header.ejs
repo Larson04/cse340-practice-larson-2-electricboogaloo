@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/catalog.css">
 </head>
-<body>
+<body class="<%= bodyClass %>">
     <header>
         <nav>
             <ul>
@@ -33,4 +33,6 @@
                 <li><a href="/products">Products</a></li>
             </ul>
         </nav>
+
+        <p><%- greeting %></p>
     </header>

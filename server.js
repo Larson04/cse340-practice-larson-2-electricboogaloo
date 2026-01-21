@@ -84,6 +84,63 @@ app.use((req, res, next) => {
 /**
  * Routes
  */
+app.use((req, res, next) => {
+    // Skip logging for routes that start with /. (like /.well-known/)
+    if (!req.path.startsWith('/.')) {
+        console.log(`${req.method} ${req.url}`);
+    }
+    next(); // Pass control to the next middleware or route
+});
+
+// Middleware to add global data to all templates
+app.use((req, res, next) => {
+    // Add current year for copyright
+    res.locals.currentYear = new Date().getFullYear();
+
+    next();
+});
+
+// Global middleware for time-based greeting
+app.use((req, res, next) => {
+    const currentHour = new Date().getHours();
+
+    /**
+     * Create logic to set different greetings based on the current hour.
+     * Use res.locals.greeting to store the greeting message.
+     * Hint: morning (before 12), afternoon (12-17), evening (after 17)
+     */
+    if (0 <=currentHour < 12) {
+        res.locals.greeting = 'Good morning';
+    } else if (currentHour < 17) {
+        res.locals.greeting = 'Good afternoon';
+    } else {
+        res.locals.greeting = 'Good evening';
+    }
+
+    next();
+});
+
+// Global middleware for random theme selection
+app.use((req, res, next) => {
+    const themes = ['blue-theme', 'green-theme', 'red-theme'];
+
+    // Your task: Pick a random theme from the array
+    const randomTheme = themes[Math.floor(Math.random() * themes.length)];
+    res.locals.bodyClass = randomTheme;
+
+    next();
+});
+
+// Global middleware to share query parameters with templates
+app.use((req, res, next) => {
+    // Make req.query available to all templates for debugging and conditional rendering
+    console.log(req.query);
+    res.locals.queryParams = req.query || {};
+    console.log("route params:", res.locals.queryParams);
+
+    next();
+});
+
 app.get('/', (req, res) => {
     const title = 'Welcome Home';
     res.render('home', { title });
@@ -103,7 +160,8 @@ app.get('/products', (req, res) => {
 app.get('/catalog', (req, res) => {
     res.render('catalog', {
         title: 'Course Catalog',
-        courses: courses
+        courses: courses,
+        currentSort: req.query.sort
     });
 });
 

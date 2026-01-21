@@ -16,6 +16,11 @@
                 <a href="/catalog/<%= course.id %>?sort=room" class="<%= currentSort === 'room' ? 'active' : '' %>">Room</a>
             </div>
         </div>
+        <% if (currentSort) { %>
+            <div class="sort-message">
+                <p>Currently sorted by: <%= currentSort %></p>
+            </div>
+        <% } %>
 
         <div class="section-list">
             <% course.sections.forEach(section => { %>
