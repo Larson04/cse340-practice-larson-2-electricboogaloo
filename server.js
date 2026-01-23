@@ -122,7 +122,7 @@ app.use((req, res, next) => {
 
 // Global middleware for random theme selection
 app.use((req, res, next) => {
-    const themes = ['blue-theme', 'green-theme', 'red-theme'];
+    const themes = ['blue-theme', 'green-theme', 'magenta-theme', 'purple-theme'];
 
     // Your task: Pick a random theme from the array
     const randomTheme = themes[Math.floor(Math.random() * themes.length)];
@@ -134,9 +134,7 @@ app.use((req, res, next) => {
 // Global middleware to share query parameters with templates
 app.use((req, res, next) => {
     // Make req.query available to all templates for debugging and conditional rendering
-    console.log(req.query);
     res.locals.queryParams = req.query || {};
-    console.log("route params:", res.locals.queryParams);
 
     next();
 });
@@ -205,7 +203,22 @@ app.get('/catalog/:courseId', (req, res, next) => {
     });
 });
 
+// Route-specific middleware that sets custom headers
+const addDemoHeaders = (req, res, next) => {
+    // Your task: Set custom headers using res.setHeader()
+    // Add a header called 'X-Demo-Page' with value 'true'
+    res.setHeader('X-Demo-Page', 'true');
+    // Add a header called 'X-Middleware-Demo' with any message you want
+    res.setHeader('X-Middleware-Demo', 'Hello from middleware!');
+    next();
+};
 
+// Demo page route with header middleware
+app.get('/demo', addDemoHeaders, (req, res) => {
+    res.render('demo', {
+        title: 'Middleware Demo Page'
+    });
+});
 
 // Test route for 500 errors
 app.get('/test-error', (req, res, next) => {
