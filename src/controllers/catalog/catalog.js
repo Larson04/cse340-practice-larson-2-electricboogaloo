@@ -2,7 +2,9 @@ import { getAllCourses, getCourseById, getSortedSections } from '../../models/ca
 
 export const catalogPage = (req, res) => {
     const courses = getAllCourses();
-    res.render('catalog', { title: 'Course Catalog', courses: courses });
+    res.render('catalog', { 
+        title: 'Course Catalog', 
+        courses: courses });
 };
 
 export const courseDetailPage = (req, res, next) => {
