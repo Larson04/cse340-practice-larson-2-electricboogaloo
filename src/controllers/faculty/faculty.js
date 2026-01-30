@@ -6,6 +6,8 @@ export const facultyListPage = async (req, res) => {
     const sortBy = req.query.sort || 'department';
     const sortedFaculty = getSortedFaculty(facultyList, sortBy);
 
+    // console.log('facultyList:', facultyList)
+
     res.render('faculty/list', { 
         title: 'Faculty Directory',
         faculty: sortedFaculty,
@@ -26,7 +28,7 @@ export const facultyDetailPage = (req, res, next) => {
         return next(err);
     }
 
-    res.render('faculty-detail', {
+    res.render('faculty/detail', {
         title: `${faculty.id} - ${faculty.title}`,
         faculty: faculty, 
     });
