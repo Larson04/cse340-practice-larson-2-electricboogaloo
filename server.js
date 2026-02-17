@@ -30,6 +30,9 @@ const app = express();
  */
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
+// Allow Express to receive and process POST data
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 // Set EJS as the templating engine
 app.set('view engine', 'ejs');
 
