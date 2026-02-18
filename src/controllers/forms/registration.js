@@ -34,7 +34,7 @@ const processRegistration = async (req, res) => {
     try {
 
         // Check if email already exists in database
-        const emailChecked = emailExists(email);
+        const emailChecked = await emailExists(email);
 
         if (emailChecked) {
             console.log('Email already registered');
