@@ -44,8 +44,6 @@ const processRegistration = async (req, res) => {
 
         // Hash the password before saving to database
         const hashedPassword = await bcrypt.hash(password, 10);
-        console.log("password hashed");
-        console.log("Info:", name, email, hashedPassword);
         // Save user to database with hashed password
         saveUser(name, email, hashedPassword);
         

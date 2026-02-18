@@ -9,21 +9,27 @@ h1, h2, h3 {
     font-family: 'Rock Salt', sans-serif;
 }
 
-.blue-theme { background-color: #b9f5ee; }
+.blue-theme { background-color: #b9f5f5; }
 .green-theme { background-color: #bef5e3;}
-.magenta-theme { background-color: #fccff0; }
-.purple-theme { background-color: #f1c8fb; }
+.magenta-theme { background-color: #fccfe8; }
+.purple-theme { background-color: #e7c8fb; }
 
 body {
     nav {
         ul {
             list-style-type: none;
             padding: 0;
+            display: flex;
+            flex-wrap: wrap;
         }
 
         li {
             display: inline;
             margin-right: 15px;
+            margin-bottom: 10px;
+            background-color: #f0f8ff;
+            padding: 5px;
+            border-radius: 1rem;
         }
 
         a {
@@ -31,6 +37,7 @@ body {
             color: #333;
             font-weight: bold;
             font-family: 'Rock Salt', sans-serif;
+            font-size: .90rem;
 
             &:hover {
                 color: #0066cc;
