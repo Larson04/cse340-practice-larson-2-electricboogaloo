@@ -14,7 +14,7 @@ export const findUserByEmail = async (email) => {
         WHERE LOWER(email) = LOWER($1)
         LIMIT 1
     `;
-    const result = await db.query(query);
+    const result = await db.query(query, [email]);
 
     return result.rows[0] || null;
 };
