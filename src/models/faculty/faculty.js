@@ -52,7 +52,7 @@ const getFaculty = async (identifier, identifierType = 'id') => {
  * @param {string} sortBy - Sort option: 'department' (default), 'name', 'title'
  * @returns {Promise<Array>} Array of faculty objects sorted by the specified field
  */
-const getSortedFaculty = async (sortBy = 'department') => {
+export const getSortedFaculty = async (sortBy = 'department') => {
     /**
      * Build ORDER BY clause - notice we sort by last_name, then first_name for names.
      * This is the standard way to alphabetize people's names.
@@ -95,7 +95,7 @@ const getSortedFaculty = async (sortBy = 'department') => {
  * @param {string} sortBy - Sort option: 'name' (default), 'department', 'title'
  * @returns {Promise<Array>} Array of faculty objects in the specified department
  */
-const getFacultyByDepartment = async (departmentId, sortBy = 'name') => {
+export const getFacultyByDepartment = async (departmentId, sortBy = 'name') => {
     const orderByClause = sortBy === 'name' ? 'f.last_name, f.first_name' :
                           sortBy === 'title' ? 'f.title, f.last_name' :
                           'd.name, f.last_name, f.first_name';
@@ -132,7 +132,5 @@ const getFacultyByDepartment = async (departmentId, sortBy = 'name') => {
  * Wrapper functions for cleaner API - these make the code more readable at the call site.
  * Example: getFacultyById(5) is clearer than getFaculty(5, 'id')
  */
-const getFacultyById = (facultyId) => getFaculty(facultyId, 'id');
-const getFacultyBySlug = (facultySlug) => getFaculty(facultySlug, 'slug');
-
-export { getFacultyById, getFacultyBySlug, getSortedFaculty, getFacultyByDepartment };
+export const getFacultyById = (facultyId) => getFaculty(facultyId, 'id');
+export const getFacultyBySlug = (facultySlug) => getFaculty(facultySlug, 'slug');

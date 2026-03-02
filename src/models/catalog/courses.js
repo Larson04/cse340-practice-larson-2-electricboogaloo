@@ -6,7 +6,7 @@ import db from '../db.js';
  * @param {string} sortBy - Sort option: 'department' (default), 'name', 'course_code'
  * @returns {Promise<Array>} Array of course objects with department information
  */
-const getAllCourses = async (sortBy = 'department') => {
+export const getAllCourses = async (sortBy = 'department') => {
     /**
      * Build ORDER BY clause based on sortBy parameter.
      * When sorting by department, also sort by course_code within each department.
@@ -93,7 +93,7 @@ const getCourse = async (identifier, identifierType = 'id') => {
  * @param {string} sortBy - Sort option: 'course_code' (default), 'name', 'department'
  * @returns {Promise<Array>} Array of course objects in the specified department
  */
-const getCoursesByDepartment = async (departmentId, sortBy = 'course_code') => {
+export const getCoursesByDepartment = async (departmentId, sortBy = 'course_code') => {
     const orderByClause = sortBy === 'name' ? 'c.name' :
                           sortBy === 'department' ? 'd.name, c.course_code' :
                           'c.course_code';
@@ -125,7 +125,5 @@ const getCoursesByDepartment = async (departmentId, sortBy = 'course_code') => {
  * Wrapper functions for backward compatibility and cleaner API.
  * Arrow functions work great for simple wrappers like this.
  */
-const getCourseById = (courseId) => getCourse(courseId, 'id');
-const getCourseBySlug = (courseSlug) => getCourse(courseSlug, 'slug');
-
-export { getAllCourses, getCourseById, getCourseBySlug, getCoursesByDepartment };
+export const getCourseById = (courseId) => getCourse(courseId, 'id');
+export const getCourseBySlug = (courseSlug) => getCourse(courseSlug, 'slug');

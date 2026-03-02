@@ -1,7 +1,6 @@
 import { validationResult } from 'express-validator';
 import { findUserByEmail, verifyPassword } from '../../models/forms/login.js';
 import { Router } from 'express';
-import { render } from 'ejs';
 import { loginValidation } from '../../middleware/validation/forms.js';
 
 const router = Router();
@@ -10,7 +9,9 @@ const router = Router();
  * Display the login form.
  */
 const showLoginForm = (req, res) => {
-    res.render('forms/login/form', { title: 'User Login' });
+    res.render('forms/login/form', { 
+        title: 'User Login' 
+    });
 };
 
 /**

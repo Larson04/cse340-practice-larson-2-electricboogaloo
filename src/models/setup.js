@@ -10,7 +10,7 @@ const __dirname = dirname(__filename);
  * Sets up the database by running the seed.sql file if needed.
  * Checks if faculty table has data - if not, runs a full re-seed.
  */
-const setupDatabase = async () => {
+export const setupDatabase = async () => {
     /**
      * Check if faculty table has any rows and wrap in try-catch to handle cases
      * where table doesn't exist yet.
@@ -54,10 +54,8 @@ const setupDatabase = async () => {
 /**
  * Tests the database connection by executing a simple query.
  */
-const testConnection = async () => {
+export const testConnection = async () => {
     const result = await db.query('SELECT NOW() as current_time');
     console.log('Database connection successful:', result.rows[0].current_time);
     return true;
 };
-
-export { setupDatabase, testConnection };

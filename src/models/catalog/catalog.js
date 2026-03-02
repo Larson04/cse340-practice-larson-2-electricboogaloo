@@ -118,21 +118,14 @@ const getCoursesByFaculty = async (identifier, identifierType = 'slug', sortBy =
  * These let us keep the same API while using consolidated core functions internally.
  * Example: getSectionsByCourseId(5) calls getSectionsByCourse(5, 'id')
  */
-const getSectionsByCourseId = (courseId, sortBy = 'time') => 
+export const getSectionsByCourseId = (courseId, sortBy = 'time') => 
     getSectionsByCourse(courseId, 'id', sortBy);
 
-const getSectionsByCourseSlug = (courseSlug, sortBy = 'time') => 
+export const getSectionsByCourseSlug = (courseSlug, sortBy = 'time') => 
     getSectionsByCourse(courseSlug, 'slug', sortBy);
 
-const getCoursesByFacultyId = (facultyId, sortBy = 'time') => 
+export const getCoursesByFacultyId = (facultyId, sortBy = 'time') => 
     getCoursesByFaculty(facultyId, 'id', sortBy);
 
-const getCoursesByFacultySlug = (facultySlug, sortBy = 'time') => 
+export const getCoursesByFacultySlug = (facultySlug, sortBy = 'time') => 
     getCoursesByFaculty(facultySlug, 'slug', sortBy);
-
-export { 
-    getSectionsByCourseId,
-    getSectionsByCourseSlug,
-    getCoursesByFacultyId,
-    getCoursesByFacultySlug
-};

@@ -34,7 +34,6 @@ const processRegistration = async (req, res) => {
     // Extract validated data from request body
     const { name, email, password } = req.body;
 
-    console.log(req.body);
     try {
 
         // Check if email already exists in database
@@ -54,7 +53,6 @@ const processRegistration = async (req, res) => {
 
         req.flash('success', 'User registered successfully');
         return res.redirect('/register');
-        // NOTE: Later when we add authentication, we'll change this to require login first
     } catch (error) {
         console.error('Error saving user:', error);
         req.flash('error', 'Unable to save user. Please try again later.');
